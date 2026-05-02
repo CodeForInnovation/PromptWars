@@ -1,0 +1,39 @@
+name: Monthly Security Audit
+
+on:
+  schedule:
+    # Run at 00:00 on the 1st of every month
+    - cron: '0 0 1 * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  security-scan:
+    name: Dependency Security Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js (Frontend)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Python (Backend)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run npm audit (Frontend)
+        working-directory: ./nexusflow/frontend
+        run: |
+          npm ci
+          npm audit --audit-level=high
+
+      - name: Install safety for Python (Backend)
+        run: pip install safety
+
+      - name: Run Python dependency scan
+        working-directory: ./nexusflow/backend
+        run: safety check -r requirements.txt --full-report

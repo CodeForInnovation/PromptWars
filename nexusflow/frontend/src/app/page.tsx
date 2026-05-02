@@ -5,6 +5,7 @@ import useSWR from 'swr';
 import ExecutiveHeatmap from '../components/ExecutiveHeatmap';
 import FocusMode from '../components/FocusMode';
 import WebhookSimulator from '../components/WebhookSimulator';
+import AIAssistant from '../components/AIAssistant';
 import { DashboardData, Task } from '../types';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://nexusflow-backend-687579320432.us-central1.run.app/api";
@@ -67,6 +68,7 @@ export default function Home() {
       )}
 
       <WebhookSimulator apiBaseUrl={API_BASE_URL} />
+      <AIAssistant apiBaseUrl={API_BASE_URL} />
     </main>
   );
 }
