@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+export PATH=$PATH:/Users/arun/Data-Science/Python-Projects/google-cloud-sdk/bin
 
 # Deployment script for NexusFlow to Google Cloud Run
 
