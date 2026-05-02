@@ -4,3 +4,7 @@ pydantic==2.13.3
 langchain
 neo4j
 python-dotenv
+
+pytest==8.0.0
+httpx==0.26.0
+google-cloud-logging==3.9.0
